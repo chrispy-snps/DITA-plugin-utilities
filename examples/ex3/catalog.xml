@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <uri name="com:test:ex3:styleAtt.rng" uri="rng/styleAtt.rng"/>
+  <system systemId="com:test:ex3:styleAtt.rng" uri="rng/styleAtt.rng"/>
+  <uri name="com:test:ex3:mymodTopicMod.rng" uri="rng/mymodTopicMod.rng"/>
+  <system systemId="com:test:ex3:mymodTopicMod.rng" uri="rng/mymodTopicMod.rng"/>
+  <uri name="com:test:ex3:extraDomain.rng" uri="rng/extraDomain.rng"/>
+  <system systemId="com:test:ex3:extraDomain.rng" uri="rng/extraDomain.rng"/>
+  <uri name="com:test:ex3:myconstConstraintMod.rng" uri="rng/myconstConstraintMod.rng"/>
+  <system systemId="com:test:ex3:myconstConstraintMod.rng" uri="rng/myconstConstraintMod.rng"/>
+  <uri name="com:test:ex3:myGlossaryShell.rng" uri="rng/myGlossaryShell.rng"/>
+  <system systemId="com:test:ex3:myGlossaryShell.rng" uri="rng/myGlossaryShell.rng"/>
+  <uri name="com:test:ex3:myTopicShell.rng" uri="rng/myTopicShell.rng"/>
+  <system systemId="com:test:ex3:myTopicShell.rng" uri="rng/myTopicShell.rng"/>
+</catalog>

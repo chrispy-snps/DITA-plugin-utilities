@@ -1,0 +1,57 @@
+<plugin directory="./ex3">
+ <uri_prefix>com:test:ex3</uri_prefix>
+
+ <!-- You can specify a content model for attributes. -->
+ <attributedomain domain="style">
+  <specialize attribute="style" from="props" model="Bold|Italic"/>
+ </attributedomain>
+
+ <!-- When specializing topics, you can specify the content model that can be nested after the topic body (info-types). -->
+ <topic domain="mymod-t">
+  <specialize elements="module" from="topic"><nesting model=""/></specialize>
+ </topic>
+
+ <elementdomain domain="extra-d">
+  <specialize elements="ex" from="fig">
+   <disallow elements="image"/>
+  </specialize>
+  <specialize elements="command variable message" from="codeph"/>
+  <specialize elements="user-defined" from="i"/>
+  <specialize elements="procedure" from="ol"/>
+  <specialize elements="step" from="li"/>
+  <specialize elements="instruct result explain" from="div"/>
+  <specialize elements="option-list" from="dl"/>
+  <specialize elements="endnote" from="p"/>
+ </elementdomain>
+
+ <!-- Constraint modules can include and provide many other domains. -->
+ <!-- You can allow only certain elements from a domain, which disallows the unspecified elements from that domain. -->
+ <!-- You can globally disallow elements without worrying about which domain provided them. -->
+ <!-- You can constrain the content models of any elements in scope. -->
+ <!-- You can modify the nesting model of topics in a constraint file. -->
+ <constraint domain="myconst-c">
+  <include_domains>extra-d mymod-t hi-d indexing-d sw-d pr-d ui-d deliveryTarget style</include_domains>
+  <allow domain="hi-d" elements="sup sub"/>
+  <allow domain="pr-d" elements="codeph"/>
+  <allow domain="ui-d" elements="menucascade uicontrol"/>
+  <disallow elements="alt audience author bodydiv boolean brand category cmdname component copyrholder copyright copyryear created critdates data data-about desc div draft-comment example featnum figgroup filepath index-base index-see index-see-also index-sort-as indextermref itemgroup keyword lines longdescref longquoteref lq navtitle object othermeta param permissions platform prodinfo prodname prognum publisher q resourceid revised searchtitle sectiondiv series shortdesc simpletable sl sli source state stentry sthead strow titlealts tm vrm vrmlist"/>
+  <constrain elements="note"><disallow elements="image"/></constrain>
+  <constrain elements="topic"><nesting model="(topic.element|module.element)*"/></constrain>
+ </constraint>
+
+ <!-- A constraint module allows you to single-source grammar in multiple topic and map shells. -->
+ <topicshell filename="myGlossaryShell.rng">
+  <root_element>glossgroup</root_element>
+  <include_domains>myconst-c glossgroup glossentry</include_domains>
+ </topicshell>
+
+ <!-- You can allow and disallow elements in topicshell and mapshell modules as well as in constraint modules. -->
+ <topicshell filename="myTopicShell.rng">
+  <root_element>topic</root_element>
+  <include_domains>myconst-c</include_domains>
+  <allow domain="sw-d" elements="filepath cmdname"/>
+  <disallow elements="linkinfo linklist linkpool"/>
+ </topicshell>
+
+</plugin>
+

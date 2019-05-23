@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <uri name="com:test:ex1:fig1Domain.rng" uri="rng/fig1Domain.rng"/>
+  <system systemId="com:test:ex1:fig1Domain.rng" uri="rng/fig1Domain.rng"/>
+  <uri name="com:test:ex1:myTopicShell.rng" uri="rng/myTopicShell.rng"/>
+  <system systemId="com:test:ex1:myTopicShell.rng" uri="rng/myTopicShell.rng"/>
+</catalog>

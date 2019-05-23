@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="urn:oasis:names:tc:dita:rng:vocabularyModuleDesc.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?><grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:dita="http://dita.oasis-open.org/architecture/2005/" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+  <moduleDesc xmlns="http://dita.oasis-open.org/architecture/2005/">
+    <moduleTitle>constraint Module for myconst-c Domain</moduleTitle>
+    <headerComment>Header Comment for constraint Module for myconst-c Domain</headerComment>
+    <moduleMetadata>
+      <moduleType>constraint</moduleType>
+      <moduleShortName>myconst-c</moduleShortName>
+      <modulePublicIds><rngMod>com:test:ex3:myconstConstraintMod.rng<var name="ditaver" presep=":"/></rngMod></modulePublicIds>
+      <domainsContribution>(deliveryTarget extra-d hi-d indexing-d mymod-t pr-d style sw-d topic ui-d myconst-c)</domainsContribution>
+    </moduleMetadata>
+  </moduleDesc>
+  <div>
+    <a:documentation>CONTENT MODEL OVERRIDES</a:documentation>
+    <include href="urn:oasis:names:tc:dita:rng:topicMod.rng">
+      <!--provided domains: topic-->
+      <define name="alt.element">
+        <notAllowed/>
+      </define>
+      <define name="audience.element">
+        <notAllowed/>
+      </define>
+      <define name="author.element">
+        <notAllowed/>
+      </define>
+      <define name="bodydiv.element">
+        <notAllowed/>
+      </define>
+      <define name="boolean.element">
+        <notAllowed/>
+      </define>
+      <define name="brand.element">
+        <notAllowed/>
+      </define>
+      <define name="category.element">
+        <notAllowed/>
+      </define>
+      <define name="component.element">
+        <notAllowed/>
+      </define>
+      <define name="copyrholder.element">
+        <notAllowed/>
+      </define>
+      <define name="copyright.element">
+        <notAllowed/>
+      </define>
+      <define name="copyryear.element">
+        <notAllowed/>
+      </define>
+      <define name="created.element">
+        <notAllowed/>
+      </define>
+      <define name="critdates.element">
+        <notAllowed/>
+      </define>
+      <define name="data.element">
+        <notAllowed/>
+      </define>
+      <define name="data-about.element">
+        <notAllowed/>
+      </define>
+      <define name="desc.element">
+        <notAllowed/>
+      </define>
+      <define name="div.element">
+        <notAllowed/>
+      </define>
+      <define name="draft-comment.element">
+        <notAllowed/>
+      </define>
+      <define name="example.element">
+        <notAllowed/>
+      </define>
+      <define name="featnum.element">
+        <notAllowed/>
+      </define>
+      <define name="figgroup.element">
+        <notAllowed/>
+      </define>
+      <define name="index-base.element">
+        <notAllowed/>
+      </define>
+      <define name="indextermref.element">
+        <notAllowed/>
+      </define>
+      <define name="itemgroup.element">
+        <notAllowed/>
+      </define>
+      <define name="keyword.element">
+        <notAllowed/>
+      </define>
+      <define name="lines.element">
+        <notAllowed/>
+      </define>
+      <define name="longdescref.element">
+        <notAllowed/>
+      </define>
+      <define name="longquoteref.element">
+        <notAllowed/>
+      </define>
+      <define name="lq.element">
+        <notAllowed/>
+      </define>
+      <define name="navtitle.element">
+        <notAllowed/>
+      </define>
+      <define name="object.element">
+        <notAllowed/>
+      </define>
+      <define name="othermeta.element">
+        <notAllowed/>
+      </define>
+      <define name="param.element">
+        <notAllowed/>
+      </define>
+      <define name="permissions.element">
+        <notAllowed/>
+      </define>
+      <define name="platform.element">
+        <notAllowed/>
+      </define>
+      <define name="prodinfo.element">
+        <notAllowed/>
+      </define>
+      <define name="prodname.element">
+        <notAllowed/>
+      </define>
+      <define name="prognum.element">
+        <notAllowed/>
+      </define>
+      <define name="publisher.element">
+        <notAllowed/>
+      </define>
+      <define name="q.element">
+        <notAllowed/>
+      </define>
+      <define name="resourceid.element">
+        <notAllowed/>
+      </define>
+      <define name="revised.element">
+        <notAllowed/>
+      </define>
+      <define name="searchtitle.element">
+        <notAllowed/>
+      </define>
+      <define name="sectiondiv.element">
+        <notAllowed/>
+      </define>
+      <define name="series.element">
+        <notAllowed/>
+      </define>
+      <define name="shortdesc.element">
+        <notAllowed/>
+      </define>
+      <define name="simpletable.element">
+        <notAllowed/>
+      </define>
+      <define name="sl.element">
+        <notAllowed/>
+      </define>
+      <define name="sli.element">
+        <notAllowed/>
+      </define>
+      <define name="source.element">
+        <notAllowed/>
+      </define>
+      <define name="state.element">
+        <notAllowed/>
+      </define>
+      <define name="stentry.element">
+        <notAllowed/>
+      </define>
+      <define name="sthead.element">
+        <notAllowed/>
+      </define>
+      <define name="strow.element">
+        <notAllowed/>
+      </define>
+      <define name="titlealts.element">
+        <notAllowed/>
+      </define>
+      <define name="tm.element">
+        <notAllowed/>
+      </define>
+      <define name="vrm.element">
+        <notAllowed/>
+      </define>
+      <define name="vrmlist.element">
+        <notAllowed/>
+      </define>
+      <!--provided elements from 'topic': abstract body cite colspec dd ddhd dl dlentry dlhead dt dthd entry fig fn foreign image indexterm keywords li link linkinfo linklist linkpool linktext metadata no-topic-nesting note ol p ph pre prolog related-links required-cleanup row section table tbody term text tgroup thead title topic ul unknown xref-->
+      <define name="topic-info-types">
+        <zeroOrMore>
+          <choice>
+            <ref name="topic.element"/>
+            <ref name="module.element"/>
+          </choice>
+        </zeroOrMore>
+      </define>
+      <define name="note.content">
+        <ref name="note.content__myconst-c"/>
+      </define>
+      <define name="topic.content">
+        <ref name="topic.content__myconst-c"/>
+      </define>
+    </include>
+    <include href="urn:oasis:names:tc:dita:rng:deliveryTargetAttDomain.rng">
+      <!--provided domains: deliveryTarget-->
+    </include>
+    <include href="extraDomain.rng">
+      <!--provided domains: extra-d-->
+      <!--provided elements from 'extra-d': command endnote ex explain instruct message option-list procedure result step user-defined variable-->
+    </include>
+    <include href="urn:oasis:names:tc:dita:rng:highlightDomain.rng">
+      <!--provided domains: hi-d-->
+      <define name="b.element">
+        <notAllowed/>
+      </define>
+      <define name="i.element">
+        <notAllowed/>
+      </define>
+      <define name="line-through.element">
+        <notAllowed/>
+      </define>
+      <define name="overline.element">
+        <notAllowed/>
+      </define>
+      <define name="tt.element">
+        <notAllowed/>
+      </define>
+      <define name="u.element">
+        <notAllowed/>
+      </define>
+      <!--provided elements from 'hi-d': sub sup-->
+    </include>
+    <include href="urn:oasis:names:tc:dita:rng:indexingDomain.rng">
+      <!--provided domains: indexing-d-->
+      <define name="index-see.element">
+        <notAllowed/>
+      </define>
+      <define name="index-see-also.element">
+        <notAllowed/>
+      </define>
+      <define name="index-sort-as.element">
+        <notAllowed/>
+      </define>
+    </include>
+    <include href="mymodTopicMod.rng">
+      <!--provided domains: mymod-t-->
+      <!--provided elements from 'mymod-t': module-->
+    </include>
+    <include href="urn:oasis:names:tc:dita:rng:programmingDomain.rng">
+      <!--provided domains: pr-d-->
+      <define name="apiname.element">
+        <notAllowed/>
+      </define>
+      <define name="codeblock.element">
+        <notAllowed/>
+      </define>
+      <define name="coderef.element">
+        <notAllowed/>
+      </define>
+      <define name="delim.element">
+        <notAllowed/>
+      </define>
+      <define name="fragment.element">
+        <notAllowed/>
+      </define>
+      <define name="fragref.element">
+        <notAllowed/>
+      </define>
+      <define name="groupchoice.element">
+        <notAllowed/>
+      </define>
+      <define name="groupcomp.element">
+        <notAllowed/>
+      </define>
+      <define name="groupseq.element">
+        <notAllowed/>
+      </define>
+      <define name="kwd.element">
+        <notAllowed/>
+      </define>
+      <define name="oper.element">
+        <notAllowed/>
+      </define>
+      <define name="option.element">
+        <notAllowed/>
+      </define>
+      <define name="parml.element">
+        <notAllowed/>
+      </define>
+      <define name="parmname.element">
+        <notAllowed/>
+      </define>
+      <define name="pd.element">
+        <notAllowed/>
+      </define>
+      <define name="plentry.element">
+        <notAllowed/>
+      </define>
+      <define name="pt.element">
+        <notAllowed/>
+      </define>
+      <define name="repsep.element">
+        <notAllowed/>
+      </define>
+      <define name="sep.element">
+        <notAllowed/>
+      </define>
+      <define name="synblk.element">
+        <notAllowed/>
+      </define>
+      <define name="synnote.element">
+        <notAllowed/>
+      </define>
+      <define name="synnoteref.element">
+        <notAllowed/>
+      </define>
+      <define name="synph.element">
+        <notAllowed/>
+      </define>
+      <define name="syntaxdiagram.element">
+        <notAllowed/>
+      </define>
+      <define name="var.element">
+        <notAllowed/>
+      </define>
+      <!--provided elements from 'pr-d': codeph-->
+    </include>
+    <include href="styleAtt.rng">
+      <!--provided domains: style-->
+    </include>
+    <include href="urn:oasis:names:tc:dita:rng:softwareDomain.rng">
+      <!--provided domains: sw-d-->
+      <define name="cmdname.element">
+        <notAllowed/>
+      </define>
+      <define name="filepath.element">
+        <notAllowed/>
+      </define>
+      <!--provided elements from 'sw-d': msgblock msgnum msgph systemoutput userinput varname-->
+    </include>
+    <include href="urn:oasis:names:tc:dita:rng:uiDomain.rng">
+      <!--provided domains: ui-d-->
+      <define name="screen.element">
+        <notAllowed/>
+      </define>
+      <define name="shortcut.element">
+        <notAllowed/>
+      </define>
+      <define name="wintitle.element">
+        <notAllowed/>
+      </define>
+      <!--provided elements from 'ui-d': menucascade uicontrol-->
+    </include>
+  </div>
+  <div>
+    <a:documentation>EXTRA CONTENT MODELS</a:documentation>
+    <define name="note.content__myconst-c">
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="dl"/>
+          <ref dita:since="1.3" name="div"/>
+          <ref name="fig"/>
+          <!--<ref name="image.element"/>-->
+          <ref name="lines"/>
+          <ref name="lq"/>
+          <ref name="object"/>
+          <ref name="ol"/>
+          <ref name="p"/>
+          <ref name="pre"/>
+          <ref name="simpletable"/>
+          <ref name="sl"/>
+          <ref name="table"/>
+          <ref name="ul"/>
+          <ref name="basic.ph"/>
+          <ref name="data.elements.incl"/>
+          <ref name="foreign.unknown.incl"/>
+          <ref name="txt.incl"/>
+        </choice>
+      </zeroOrMore>
+    </define>
+    <define name="topic.content__myconst-c">
+      <ref name="title"/>
+      <optional>
+        <ref name="titlealts"/>
+      </optional>
+      <optional>
+        <choice>
+          <ref name="shortdesc"/>
+          <ref name="abstract"/>
+        </choice>
+      </optional>
+      <optional>
+        <ref name="prolog"/>
+      </optional>
+      <optional>
+        <ref name="body"/>
+      </optional>
+      <optional>
+        <ref name="related-links"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="topic-info-types"/>
+      </zeroOrMore>
+    </define>
+  </div>
+</grammar>

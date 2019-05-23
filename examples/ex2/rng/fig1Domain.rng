@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="urn:oasis:names:tc:dita:rng:vocabularyModuleDesc.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?><grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:dita="http://dita.oasis-open.org/architecture/2005/" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+  <moduleDesc xmlns="http://dita.oasis-open.org/architecture/2005/">
+    <moduleTitle>Example Specialized Element Domain</moduleTitle>
+    <headerComment>This is
+some multiline
+header text.</headerComment>
+    <moduleMetadata>
+      <moduleType>elementdomain</moduleType>
+      <moduleShortName>fig1-d</moduleShortName>
+      <modulePublicIds><rngMod>com:test:ex2:fig1Domain.rng<var name="ditaver" presep=":"/></rngMod></modulePublicIds>
+      <domainsContribution>(topic fig1-d)</domainsContribution>
+    </moduleMetadata>
+  </moduleDesc>
+  <div>
+    <a:documentation>DOMAIN EXTENSION PATTERNS</a:documentation>
+    <define name="fig1-d-fig">
+      <choice>
+        <ref name="fig1.element"/>
+      </choice>
+    </define>
+    <define combine="choice" name="fig">
+      <ref name="fig1-d-fig"/>
+    </define>
+  </div>
+  <div>
+    <a:documentation>ELEMENT TYPE NAME PATTERNS</a:documentation>
+    <define name="fig1">
+      <ref name="fig1.element"/>
+    </define>
+  </div>
+  <div>
+    <a:documentation>ELEMENT TYPE DECLARATIONS</a:documentation>
+    <div>
+      <a:documentation>LONG NAME: fig1</a:documentation>
+      <define name="fig1.element">
+        <element dita:longName="fig1" name="fig1">
+          <ref name="fig1.attlist"/>
+          <ref name="fig1.content"/>
+        </element>
+      </define>
+      <define name="fig1.content">
+        <ref name="fig.content"/>
+      </define>
+      <define combine="interleave" name="fig1.attlist">
+        <ref name="fig1.attributes"/>
+      </define>
+      <define name="fig1.attributes">
+        <ref name="fig.attributes"/>
+      </define>
+    </div>
+  </div>
+  <div>
+    <a:documentation>SPECIALIZATION ATTRIBUTE DECLARATIONS</a:documentation>
+    <define combine="interleave" name="fig1.attlist">
+      <ref name="global-atts"/>
+      <optional>
+        <attribute a:defaultValue="+ topic/fig fig1-d/fig1 " name="class"/>
+      </optional>
+    </define>
+  </div>
+</grammar>

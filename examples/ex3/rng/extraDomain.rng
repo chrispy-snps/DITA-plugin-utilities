@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="urn:oasis:names:tc:dita:rng:vocabularyModuleDesc.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?><grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:dita="http://dita.oasis-open.org/architecture/2005/" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+  <moduleDesc xmlns="http://dita.oasis-open.org/architecture/2005/">
+    <moduleTitle>elementdomain Module for extra-d Domain</moduleTitle>
+    <headerComment>Header Comment for elementdomain Module for extra-d Domain</headerComment>
+    <moduleMetadata>
+      <moduleType>elementdomain</moduleType>
+      <moduleShortName>extra-d</moduleShortName>
+      <modulePublicIds><rngMod>com:test:ex3:extraDomain.rng<var name="ditaver" presep=":"/></rngMod></modulePublicIds>
+      <domainsContribution>(hi-d pr-d topic extra-d)</domainsContribution>
+    </moduleMetadata>
+  </moduleDesc>
+  <div>
+    <a:documentation>DOMAIN EXTENSION PATTERNS</a:documentation>
+    <define name="extra-d-div">
+      <choice>
+        <ref name="explain.element"/>
+        <ref name="instruct.element"/>
+        <ref name="result.element"/>
+      </choice>
+    </define>
+    <define combine="choice" name="div">
+      <ref name="extra-d-div"/>
+    </define>
+    <define name="extra-d-dl">
+      <choice>
+        <ref name="option-list.element"/>
+      </choice>
+    </define>
+    <define combine="choice" name="dl">
+      <ref name="extra-d-dl"/>
+    </define>
+    <define name="extra-d-fig">
+      <choice>
+        <ref name="ex.element"/>
+      </choice>
+    </define>
+    <define combine="choice" name="fig">
+      <ref name="extra-d-fig"/>
+    </define>
+    <define name="extra-d-li">
+      <choice>
+        <ref name="step.element"/>
+      </choice>
+    </define>
+    <define combine="choice" name="li">
+      <ref name="extra-d-li"/>
+    </define>
+    <define name="extra-d-ol">
+      <choice>
+        <ref name="procedure.element"/>
+      </choice>
+    </define>
+    <define combine="choice" name="ol">
+      <ref name="extra-d-ol"/>
+    </define>
+    <define name="extra-d-p">
+      <choice>
+        <ref name="endnote.element"/>
+      </choice>
+    </define>
+    <define combine="choice" name="p">
+      <ref name="extra-d-p"/>
+    </define>
+    <define name="extra-d-ph">
+      <choice>
+        <ref name="command.element"/>
+        <ref name="message.element"/>
+        <ref name="user-defined.element"/>
+        <ref name="variable.element"/>
+      </choice>
+    </define>
+    <define combine="choice" name="ph">
+      <ref name="extra-d-ph"/>
+    </define>
+  </div>
+  <div>
+    <a:documentation>ELEMENT TYPE NAME PATTERNS</a:documentation>
+    <define name="ex">
+      <ref name="ex.element"/>
+    </define>
+    <define name="command">
+      <ref name="command.element"/>
+    </define>
+    <define name="variable">
+      <ref name="variable.element"/>
+    </define>
+    <define name="message">
+      <ref name="message.element"/>
+    </define>
+    <define name="user-defined">
+      <ref name="user-defined.element"/>
+    </define>
+    <define name="procedure">
+      <ref name="procedure.element"/>
+    </define>
+    <define name="step">
+      <ref name="step.element"/>
+    </define>
+    <define name="instruct">
+      <ref name="instruct.element"/>
+    </define>
+    <define name="result">
+      <ref name="result.element"/>
+    </define>
+    <define name="explain">
+      <ref name="explain.element"/>
+    </define>
+    <define name="option-list">
+      <ref name="option-list.element"/>
+    </define>
+    <define name="endnote">
+      <ref name="endnote.element"/>
+    </define>
+  </div>
+  <div>
+    <a:documentation>ELEMENT TYPE DECLARATIONS</a:documentation>
+    <div>
+      <a:documentation>LONG NAME: ex</a:documentation>
+      <define name="ex.element">
+        <element dita:longName="ex" name="ex">
+          <ref name="ex.attlist"/>
+          <ref name="ex.content"/>
+        </element>
+      </define>
+      <define name="ex.content">
+        <ref name="ex.content__extra-d"/>
+      </define>
+      <define combine="interleave" name="ex.attlist">
+        <ref name="ex.attributes"/>
+      </define>
+      <define name="ex.attributes">
+        <ref name="fig.attributes"/>
+      </define>
+    </div>
+    <div>
+      <a:documentation>LONG NAME: command</a:documentation>
+      <define name="command.element">
+        <element dita:longName="command" name="command">
+          <ref name="command.attlist"/>
+          <ref name="command.content"/>
+        </element>
+      </define>
+      <define name="command.content">
+        <ref name="codeph.content"/>
+      </define>
+      <define combine="interleave" name="command.attlist">
+        <ref name="command.attributes"/>
+      </define>
+      <define name="command.attributes">
+        <ref name="codeph.attributes"/>
+      </define>
+    </div>
+    <div>
+      <a:documentation>LONG NAME: variable</a:documentation>
+      <define name="variable.element">
+        <element dita:longName="variable" name="variable">
+          <ref name="variable.attlist"/>
+          <ref name="variable.content"/>
+        </element>
+      </define>
+      <define name="variable.content">
+        <ref name="codeph.content"/>
+      </define>
+      <define combine="interleave" name="variable.attlist">
+        <ref name="variable.attributes"/>
+      </define>
+      <define name="variable.attributes">
+        <ref name="codeph.attributes"/>
+      </define>
+    </div>
+    <div>
+      <a:documentation>LONG NAME: message</a:documentation>
+      <define name="message.element">
+        <element dita:longName="message" name="message">
+          <ref name="message.attlist"/>
+          <ref name="message.content"/>
+        </element>
+      </define>
+      <define name="message.content">
+        <ref name="codeph.content"/>
+      </define>
+      <define combine="interleave" name="message.attlist">
+        <ref name="message.attributes"/>
+      </define>
+      <define name="message.attributes">
+        <ref name="codeph.attributes"/>
+      </define>
+    </div>
+    <div>
+      <a:documentation>LONG NAME: user-defined</a:documentation>
+      <define name="user-defined.element">
+        <element dita:longName="user-defined" name="user-defined">
+          <ref name="user-defined.attlist"/>
+          <ref name="user-defined.content"/>
+        </element>
+      </define>
+      <define name="user-defined.content">
+        <ref name="i.content"/>
+      </define>
+      <define combine="interleave" name="user-defined.attlist">
+        <ref name="user-defined.attributes"/>
+      </define>
+      <define name="user-defined.attributes">
+        <ref name="i.attributes"/>
+      </define>
+    </div>
+    <div>
+      <a:documentation>LONG NAME: procedure</a:documentation>
+      <define name="procedure.element">
+        <element dita:longName="procedure" name="procedure">
+          <ref name="procedure.attlist"/>
+          <ref name="procedure.content"/>
+        </element>
+      </define>
+      <define name="procedure.content">
+        <ref name="ol.content"/>
+      </define>
+      <define combine="interleave" name="procedure.attlist">
+        <ref name="procedure.attributes"/>
+      </define>
+      <define name="procedure.attributes">
+        <ref name="ol.attributes"/>
+      </define>
+    </div>
+    <div>
+      <a:documentation>LONG NAME: step</a:documentation>
+      <define name="step.element">
+        <element dita:longName="step" name="step">
+          <ref name="step.attlist"/>
+          <ref name="step.content"/>
+        </element>
+      </define>
+      <define name="step.content">
+        <ref name="li.content"/>
+      </define>
+      <define combine="interleave" name="step.attlist">
+        <ref name="step.attributes"/>
+      </define>
+      <define name="step.attributes">
+        <ref name="li.attributes"/>
+      </define>
+    </div>
+    <div>
+      <a:documentation>LONG NAME: instruct</a:documentation>
+      <define name="instruct.element">
+        <element dita:longName="instruct" name="instruct">
+          <ref name="instruct.attlist"/>
+          <ref name="instruct.content"/>
+        </element>
+      </define>
+      <define name="instruct.content">
+        <ref name="div.content"/>
+      </define>
+      <define combine="interleave" name="instruct.attlist">
+        <ref name="instruct.attributes"/>
+      </define>
+      <define name="instruct.attributes">
+        <ref name="div.attributes"/>
+      </define>
+    </div>
+    <div>
+      <a:documentation>LONG NAME: result</a:documentation>
+      <define name="result.element">
+        <element dita:longName="result" name="result">
+          <ref name="result.attlist"/>
+          <ref name="result.content"/>
+        </element>
+      </define>
+      <define name="result.content">
+        <ref name="div.content"/>
+      </define>
+      <define combine="interleave" name="result.attlist">
+        <ref name="result.attributes"/>
+      </define>
+      <define name="result.attributes">
+        <ref name="div.attributes"/>
+      </define>
+    </div>
+    <div>
+      <a:documentation>LONG NAME: explain</a:documentation>
+      <define name="explain.element">
+        <element dita:longName="explain" name="explain">
+          <ref name="explain.attlist"/>
+          <ref name="explain.content"/>
+        </element>
+      </define>
+      <define name="explain.content">
+        <ref name="div.content"/>
+      </define>
+      <define combine="interleave" name="explain.attlist">
+        <ref name="explain.attributes"/>
+      </define>
+      <define name="explain.attributes">
+        <ref name="div.attributes"/>
+      </define>
+    </div>
+    <div>
+      <a:documentation>LONG NAME: option-list</a:documentation>
+      <define name="option-list.element">
+        <element dita:longName="option-list" name="option-list">
+          <ref name="option-list.attlist"/>
+          <ref name="option-list.content"/>
+        </element>
+      </define>
+      <define name="option-list.content">
+        <ref name="dl.content"/>
+      </define>
+      <define combine="interleave" name="option-list.attlist">
+        <ref name="option-list.attributes"/>
+      </define>
+      <define name="option-list.attributes">
+        <ref name="dl.attributes"/>
+      </define>
+    </div>
+    <div>
+      <a:documentation>LONG NAME: endnote</a:documentation>
+      <define name="endnote.element">
+        <element dita:longName="endnote" name="endnote">
+          <ref name="endnote.attlist"/>
+          <ref name="endnote.content"/>
+        </element>
+      </define>
+      <define name="endnote.content">
+        <ref name="p.content"/>
+      </define>
+      <define combine="interleave" name="endnote.attlist">
+        <ref name="endnote.attributes"/>
+      </define>
+      <define name="endnote.attributes">
+        <ref name="p.attributes"/>
+      </define>
+    </div>
+  </div>
+  <div>
+    <a:documentation>SPECIALIZATION ATTRIBUTE DECLARATIONS</a:documentation>
+    <define combine="interleave" name="ex.attlist">
+      <ref name="global-atts"/>
+      <optional>
+        <attribute a:defaultValue="+ topic/fig extra-d/ex " name="class"/>
+      </optional>
+    </define>
+    <define combine="interleave" name="command.attlist">
+      <ref name="global-atts"/>
+      <optional>
+        <attribute a:defaultValue="+ topic/ph pr-d/codeph extra-d/command " name="class"/>
+      </optional>
+    </define>
+    <define combine="interleave" name="variable.attlist">
+      <ref name="global-atts"/>
+      <optional>
+        <attribute a:defaultValue="+ topic/ph pr-d/codeph extra-d/variable " name="class"/>
+      </optional>
+    </define>
+    <define combine="interleave" name="message.attlist">
+      <ref name="global-atts"/>
+      <optional>
+        <attribute a:defaultValue="+ topic/ph pr-d/codeph extra-d/message " name="class"/>
+      </optional>
+    </define>
+    <define combine="interleave" name="user-defined.attlist">
+      <ref name="global-atts"/>
+      <optional>
+        <attribute a:defaultValue="+ topic/ph hi-d/i extra-d/user-defined " name="class"/>
+      </optional>
+    </define>
+    <define combine="interleave" name="procedure.attlist">
+      <ref name="global-atts"/>
+      <optional>
+        <attribute a:defaultValue="+ topic/ol extra-d/procedure " name="class"/>
+      </optional>
+    </define>
+    <define combine="interleave" name="step.attlist">
+      <ref name="global-atts"/>
+      <optional>
+        <attribute a:defaultValue="+ topic/li extra-d/step " name="class"/>
+      </optional>
+    </define>
+    <define combine="interleave" name="instruct.attlist">
+      <ref name="global-atts"/>
+      <optional>
+        <attribute a:defaultValue="+ topic/div extra-d/instruct " name="class"/>
+      </optional>
+    </define>
+    <define combine="interleave" name="result.attlist">
+      <ref name="global-atts"/>
+      <optional>
+        <attribute a:defaultValue="+ topic/div extra-d/result " name="class"/>
+      </optional>
+    </define>
+    <define combine="interleave" name="explain.attlist">
+      <ref name="global-atts"/>
+      <optional>
+        <attribute a:defaultValue="+ topic/div extra-d/explain " name="class"/>
+      </optional>
+    </define>
+    <define combine="interleave" name="option-list.attlist">
+      <ref name="global-atts"/>
+      <optional>
+        <attribute a:defaultValue="+ topic/dl extra-d/option-list " name="class"/>
+      </optional>
+    </define>
+    <define combine="interleave" name="endnote.attlist">
+      <ref name="global-atts"/>
+      <optional>
+        <attribute a:defaultValue="+ topic/p extra-d/endnote " name="class"/>
+      </optional>
+    </define>
+  </div>
+  <div>
+    <a:documentation>EXTRA CONTENT MODELS</a:documentation>
+    <define name="ex.content__extra-d">
+      <optional>
+        <ref name="title"/>
+      </optional>
+      <optional>
+        <ref name="desc"/>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="figgroup"/>
+          <ref name="dl"/>
+          <ref dita:since="1.3" name="div"/>
+          <!--<ref name="image.element"/>-->
+          <ref name="lines"/>
+          <ref name="lq"/>
+          <ref name="note"/>
+          <ref name="object"/>
+          <ref name="ol"/>
+          <ref name="p"/>
+          <ref name="pre"/>
+          <ref name="sl"/>
+          <ref name="ul"/>
+          <ref name="data.elements.incl"/>
+          <ref name="fn"/>
+          <ref name="foreign.unknown.incl"/>
+          <ref name="simpletable"/>
+          <ref name="xref"/>
+        </choice>
+      </zeroOrMore>
+    </define>
+  </div>
+</grammar>

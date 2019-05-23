@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="urn:oasis:names:tc:dita:rng:vocabularyModuleDesc.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?><grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:dita="http://dita.oasis-open.org/architecture/2005/" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+  <moduleDesc xmlns="http://dita.oasis-open.org/architecture/2005/">
+    <moduleTitle>attributedomain Module for style Domain</moduleTitle>
+    <headerComment>Header Comment for attributedomain Module for style Domain</headerComment>
+    <moduleMetadata>
+      <moduleType>attributedomain</moduleType>
+      <moduleShortName>style</moduleShortName>
+      <modulePublicIds>
+        <rngMod>com:test:ex3:styleAtt.rng<var name="ditaver" presep=":"/></rngMod>
+      </modulePublicIds>
+      <domainsContribution>a(props style)</domainsContribution>
+    </moduleMetadata>
+  </moduleDesc>
+  <define name="style-d-attribute">
+    <optional>
+      <attribute name="style">
+        <choice>
+          <value>Bold</value>
+          <value>Italic</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <define combine="interleave" name="props-attribute-extensions">
+    <ref name="style-d-attribute"/>
+  </define>
+</grammar>

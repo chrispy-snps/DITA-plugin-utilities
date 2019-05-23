@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="urn:oasis:names:tc:dita:rng:vocabularyModuleDesc.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?><grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:dita="http://dita.oasis-open.org/architecture/2005/" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+  <moduleDesc xmlns="http://dita.oasis-open.org/architecture/2005/">
+    <moduleTitle>attributedomain Module for mybundle Domain</moduleTitle>
+    <headerComment>Header Comment for attributedomain Module for mybundle Domain</headerComment>
+    <moduleMetadata>
+      <moduleType>attributedomain</moduleType>
+      <moduleShortName>mybundle</moduleShortName>
+      <modulePublicIds>
+        <rngMod>com:test:ex2:mybundleAtt.rng<var name="ditaver" presep=":"/></rngMod>
+      </modulePublicIds>
+      <domainsContribution>a(props mybundle)</domainsContribution>
+    </moduleMetadata>
+  </moduleDesc>
+  <define name="mybundle-d-attribute">
+    <optional>
+      <attribute name="mybundle"/>
+    </optional>
+  </define>
+  <define combine="interleave" name="props-attribute-extensions">
+    <ref name="mybundle-d-attribute"/>
+  </define>
+</grammar>

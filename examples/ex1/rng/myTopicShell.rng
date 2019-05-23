@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="urn:oasis:names:tc:dita:rng:vocabularyModuleDesc.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?><grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:dita="http://dita.oasis-open.org/architecture/2005/" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+  <moduleDesc xmlns="http://dita.oasis-open.org/architecture/2005/">
+    <moduleTitle>topicshell Module for topic</moduleTitle>
+    <headerComment>Header Comment for topicshell Module for topic</headerComment>
+    <moduleMetadata>
+      <moduleType>topicshell</moduleType>
+      <moduleShortName>topicshell Module for topic</moduleShortName>
+      <modulePublicIds>
+        <rngShell>com:test:ex1:myTopicShell.rng<var name="ditaver" presep=":"/></rngShell>
+      </modulePublicIds>
+    </moduleMetadata>
+  </moduleDesc>
+  <div>
+    <a:documentation>ROOT ELEMENT DECLARATION</a:documentation>
+    <start>
+      <ref name="topic.element"/>
+    </start>
+  </div>
+  <div>
+    <a:documentation>DOMAINS ATTRIBUTE</a:documentation>
+    <define combine="interleave" name="domains-att">
+      <optional>
+        <attribute a:defaultValue="(topic fig1-d)" name="domains"/>
+      </optional>
+    </define>
+  </div>
+  <div>
+    <a:documentation>CONTENT CONSTRAINT INTEGRATION</a:documentation>
+  </div>
+  <div>
+    <a:documentation>MODULE INCLUSIONS</a:documentation>
+    <include href="urn:oasis:names:tc:dita:rng:topicMod.rng">
+      <!--provided domains: topic-->
+      <!--provided elements from 'topic': abstract alt audience author body bodydiv boolean brand category cite colspec component copyrholder copyright copyryear created critdates data data-about dd ddhd desc div dl dlentry dlhead draft-comment dt dthd entry example featnum fig figgroup fn foreign image index-base indexterm indextermref itemgroup keyword keywords li lines link linkinfo linklist linkpool linktext longdescref longquoteref lq metadata navtitle no-topic-nesting note object ol othermeta p param permissions ph platform pre prodinfo prodname prognum prolog publisher q related-links required-cleanup resourceid revised row searchtitle section sectiondiv series shortdesc simpletable sl sli source state stentry sthead strow table tbody term text tgroup thead title titlealts tm topic ul unknown vrm vrmlist xref-->
+      <define name="topic-info-types">
+        <ref name="info-types"/>
+      </define>
+    </include>
+    <include href="fig1Domain.rng">
+      <!--provided domains: fig1-d-->
+      <!--provided elements from 'fig1-d': fig1-->
+    </include>
+  </div>
+  <div>
+    <a:documentation>ID-DEFINING-ELEMENT OVERRIDES</a:documentation>
+    <define name="any">
+      <zeroOrMore>
+        <choice>
+          <ref name="idElements"/>
+          <element>
+            <anyName>
+              <except>
+                <name>topic</name>
+              </except>
+            </anyName>
+            <zeroOrMore>
+              <attribute>
+                <anyName/>
+              </attribute>
+            </zeroOrMore>
+            <ref name="any"/>
+          </element>
+          <text/>
+        </choice>
+      </zeroOrMore>
+    </define>
+  </div>
+</grammar>

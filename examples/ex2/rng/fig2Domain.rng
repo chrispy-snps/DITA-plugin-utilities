@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="urn:oasis:names:tc:dita:rng:vocabularyModuleDesc.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?><grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:dita="http://dita.oasis-open.org/architecture/2005/" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+  <moduleDesc xmlns="http://dita.oasis-open.org/architecture/2005/">
+    <moduleTitle>elementdomain Module for fig2-d Domain</moduleTitle>
+    <headerComment>Header Comment for elementdomain Module for fig2-d Domain</headerComment>
+    <moduleMetadata>
+      <moduleType>elementdomain</moduleType>
+      <moduleShortName>fig2-d</moduleShortName>
+      <modulePublicIds><rngMod>com:test:ex2:fig2Domain.rng<var name="ditaver" presep=":"/></rngMod></modulePublicIds>
+      <domainsContribution>(fig1-d topic fig2-d)</domainsContribution>
+    </moduleMetadata>
+  </moduleDesc>
+  <div>
+    <a:documentation>DOMAIN EXTENSION PATTERNS</a:documentation>
+    <define name="fig2-d-fig">
+      <choice>
+        <ref name="fig2.element"/>
+      </choice>
+    </define>
+    <define combine="choice" name="fig">
+      <ref name="fig2-d-fig"/>
+    </define>
+  </div>
+  <div>
+    <a:documentation>ELEMENT TYPE NAME PATTERNS</a:documentation>
+    <define name="fig2">
+      <ref name="fig2.element"/>
+    </define>
+  </div>
+  <div>
+    <a:documentation>ELEMENT TYPE DECLARATIONS</a:documentation>
+    <div>
+      <a:documentation>LONG NAME: fig2</a:documentation>
+      <define name="fig2.element">
+        <element dita:longName="fig2" name="fig2">
+          <ref name="fig2.attlist"/>
+          <ref name="fig2.content"/>
+        </element>
+      </define>
+      <define name="fig2.content">
+        <ref name="fig2.content__fig2-d"/>
+      </define>
+      <define combine="interleave" name="fig2.attlist">
+        <ref name="fig2.attributes"/>
+      </define>
+      <define name="fig2.attributes">
+        <ref name="fig1.attributes"/>
+      </define>
+    </div>
+  </div>
+  <div>
+    <a:documentation>SPECIALIZATION ATTRIBUTE DECLARATIONS</a:documentation>
+    <define combine="interleave" name="fig2.attlist">
+      <ref name="global-atts"/>
+      <optional>
+        <attribute a:defaultValue="+ topic/fig fig1-d/fig1 fig2-d/fig2 " name="class"/>
+      </optional>
+    </define>
+  </div>
+  <div>
+    <a:documentation>EXTRA CONTENT MODELS</a:documentation>
+    <define name="fig2.content__fig2-d">
+      <optional>
+        <ref name="title"/>
+      </optional>
+      <optional>
+        <ref name="desc"/>
+      </optional>
+      <zeroOrMore>
+        <choice>
+          <ref name="figgroup"/>
+          <ref name="dl"/>
+          <ref dita:since="1.3" name="div"/>
+          <ref name="image"/>
+          <ref name="lines"/>
+          <ref name="lq"/>
+          <ref name="note"/>
+          <ref name="object"/>
+          <ref name="ol"/>
+          <!--<ref name="p.element"/>-->
+          <!--<ref name="pre.element"/>-->
+          <ref name="sl"/>
+          <ref name="ul"/>
+          <ref name="data.elements.incl"/>
+          <ref name="fn"/>
+          <ref name="foreign.unknown.incl"/>
+          <ref name="simpletable"/>
+          <ref name="xref"/>
+        </choice>
+      </zeroOrMore>
+    </define>
+  </div>
+</grammar>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="urn:oasis:names:tc:dita:rng:vocabularyModuleDesc.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?><grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:dita="http://dita.oasis-open.org/architecture/2005/" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+  <moduleDesc xmlns="http://dita.oasis-open.org/architecture/2005/">
+    <moduleTitle>topic Module for mymod-t Domain</moduleTitle>
+    <headerComment>Header Comment for topic Module for mymod-t Domain</headerComment>
+    <moduleMetadata>
+      <moduleType>topic</moduleType>
+      <moduleShortName>mymod-t</moduleShortName>
+      <modulePublicIds><rngMod>com:test:ex3:mymodTopicMod.rng<var name="ditaver" presep=":"/></rngMod></modulePublicIds>
+      <domainsContribution>(topic mymod-t)</domainsContribution>
+    </moduleMetadata>
+  </moduleDesc>
+  <div>
+    <a:documentation>INFO TYPES PATTERNS</a:documentation>
+    <define name="module-info-types">
+      <empty/>
+    </define>
+  </div>
+  <div>
+    <a:documentation>ELEMENT TYPE NAME PATTERNS</a:documentation>
+    <define name="module">
+      <ref name="module.element"/>
+    </define>
+  </div>
+  <div>
+    <a:documentation>ELEMENT TYPE DECLARATIONS</a:documentation>
+    <div>
+      <a:documentation>LONG NAME: module</a:documentation>
+      <define name="module.element">
+        <element dita:longName="module" name="module">
+          <ref name="module.attlist"/>
+          <ref name="module.content"/>
+        </element>
+      </define>
+      <define name="module.content">
+        <ref name="module.content__mymod-t"/>
+      </define>
+      <define combine="interleave" name="module.attlist">
+        <ref name="module.attributes"/>
+        <ref name="domains-att"/>
+      </define>
+      <define name="module.attributes">
+        <ref name="topic.attributes"/>
+      </define>
+    </div>
+  </div>
+  <div>
+    <a:documentation>SPECIALIZATION ATTRIBUTE DECLARATIONS</a:documentation>
+    <define combine="interleave" name="module.attlist">
+      <ref name="global-atts"/>
+      <optional>
+        <attribute a:defaultValue="- topic/topic mymod-t/module " name="class"/>
+      </optional>
+    </define>
+  </div>
+  <div>
+    <a:documentation>EXTRA CONTENT MODELS</a:documentation>
+    <define name="module.content__mymod-t">
+      <ref name="title"/>
+      <optional>
+        <ref name="titlealts"/>
+      </optional>
+      <optional>
+        <choice>
+          <ref name="shortdesc"/>
+          <ref name="abstract"/>
+        </choice>
+      </optional>
+      <optional>
+        <ref name="prolog"/>
+      </optional>
+      <optional>
+        <ref name="body"/>
+      </optional>
+      <optional>
+        <ref name="related-links"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="module-info-types"/>
+      </zeroOrMore>
+    </define>
+  </div>
+</grammar>

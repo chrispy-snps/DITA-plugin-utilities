@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="urn:oasis:names:tc:dita:rng:vocabularyModuleDesc.rng"
+  schematypens="http://relaxng.org/ns/structure/1.0"?><grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:dita="http://dita.oasis-open.org/architecture/2005/" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+  <moduleDesc xmlns="http://dita.oasis-open.org/architecture/2005/">
+    <moduleTitle>topicshell Module for topic</moduleTitle>
+    <headerComment>Header Comment for topicshell Module for topic</headerComment>
+    <moduleMetadata>
+      <moduleType>topicshell</moduleType>
+      <moduleShortName>topicshell Module for topic</moduleShortName>
+      <modulePublicIds>
+        <rngShell>com:test:ex3:myTopicShell.rng<var name="ditaver" presep=":"/></rngShell>
+      </modulePublicIds>
+    </moduleMetadata>
+  </moduleDesc>
+  <div>
+    <a:documentation>ROOT ELEMENT DECLARATION</a:documentation>
+    <start>
+      <ref name="topic.element"/>
+    </start>
+  </div>
+  <div>
+    <a:documentation>DOMAINS ATTRIBUTE</a:documentation>
+    <define combine="interleave" name="domains-att">
+      <optional>
+        <attribute a:defaultValue="(deliveryTarget extra-d hi-d indexing-d mymod-t pr-d style sw-d topic ui-d myconst-c) (hi-d pr-d topic extra-d) (topic hi-d) (topic indexing-d) (topic mymod-t) (topic pr-d) (topic sw-d) (topic ui-d) a(props deliveryTarget) a(props style)" name="domains"/>
+      </optional>
+    </define>
+  </div>
+  <div>
+    <a:documentation>CONTENT CONSTRAINT INTEGRATION</a:documentation>
+    <include href="myconstConstraintMod.rng">
+      <!--provided domains: deliveryTarget extra-d hi-d indexing-d myconst-c mymod-t pr-d style sw-d topic ui-d-->
+      <define name="linkinfo.element">
+        <notAllowed/>
+      </define>
+      <define name="linklist.element">
+        <notAllowed/>
+      </define>
+      <define name="linkpool.element">
+        <notAllowed/>
+      </define>
+      <!--provided elements from 'topic': abstract body cite colspec dd ddhd dl dlentry dlhead dt dthd entry fig fn foreign image indexterm keywords li link linktext metadata no-topic-nesting note ol p ph pre prolog related-links required-cleanup row section table tbody term text tgroup thead title topic ul unknown xref-->
+      <!--provided elements from 'extra-d': command endnote ex explain instruct message option-list procedure result step user-defined variable-->
+      <!--provided elements from 'hi-d': sub sup-->
+      <!--provided elements from 'mymod-t': module-->
+      <!--provided elements from 'pr-d': codeph-->
+      <define name="msgblock.element">
+        <notAllowed/>
+      </define>
+      <define name="msgnum.element">
+        <notAllowed/>
+      </define>
+      <define name="msgph.element">
+        <notAllowed/>
+      </define>
+      <define name="systemoutput.element">
+        <notAllowed/>
+      </define>
+      <define name="userinput.element">
+        <notAllowed/>
+      </define>
+      <define name="varname.element">
+        <notAllowed/>
+      </define>
+      <!--provided elements from 'ui-d': menucascade uicontrol-->
+      <define name="topic-info-types">
+        <zeroOrMore>
+          <choice>
+            <ref name="topic.element"/>
+            <ref name="module.element"/>
+          </choice>
+        </zeroOrMore>
+      </define>
+    </include>
+  </div>
+  <div>
+    <a:documentation>MODULE INCLUSIONS</a:documentation>
+  </div>
+  <div>
+    <a:documentation>ID-DEFINING-ELEMENT OVERRIDES</a:documentation>
+    <define name="any">
+      <zeroOrMore>
+        <choice>
+          <ref name="idElements"/>
+          <element>
+            <anyName>
+              <except>
+                <name>module</name>
+                <name>topic</name>
+              </except>
+            </anyName>
+            <zeroOrMore>
+              <attribute>
+                <anyName/>
+              </attribute>
+            </zeroOrMore>
+            <ref name="any"/>
+          </element>
+          <text/>
+        </choice>
+      </zeroOrMore>
+    </define>
+  </div>
+</grammar>

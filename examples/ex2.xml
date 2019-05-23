@@ -1,0 +1,38 @@
+<plugin directory="./ex2">
+ <uri_prefix>com:test:ex2</uri_prefix>
+
+ <!-- Domain names must have the proper extension or the specification is rejected. -->
+ <!-- Filenames are optional; the default is to create one automatically. -->
+ <!-- Titles and headers are also optional. -->
+ <elementdomain filename="fig1Domain.rng" domain="fig1-d">
+  <title>Example Specialized Element Domain</title>
+  <header>This is
+some multiline
+header text.</header>
+  <specialize elements="fig1" from="fig"/>
+ </elementdomain>
+
+ <!-- You can specialize elements from already-specialized elements. -->
+ <!-- You can disallow elements from the content model of specialized elements. -->
+ <elementdomain domain="fig2-d">
+  <specialize elements="fig2" from="fig1">
+   <disallow elements="p pre"/>
+  </specialize>
+ </elementdomain>
+
+ <!-- You can only specialize attributes from @props or @base. -->
+ <!-- You can only create one attribute per attributedomain module. -->
+ <attributedomain domain="mybundle">
+  <specialize attribute="mybundle" from="props"/>
+ </attributedomain>
+
+ <!-- For topicshell and mapshell modules, -->
+ <!--  * The output filename is required. -->
+ <!--  * The root element is required. -->
+ <!-- Attribute modules are included by attribute name. -->
+ <!-- Other domains needed by included domains are automatically included. -->
+ <topicshell filename="myTopicShell.rng">
+  <root_element>topic</root_element>
+  <include_domains>xml-d fig2-d mybundle</include_domains>
+ </topicshell>
+</plugin>

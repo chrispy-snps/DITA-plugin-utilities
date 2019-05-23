@@ -1,0 +1,25 @@
+<plugin directory="./ex1">
+ <uri_prefix>com:test:ex1</uri_prefix>
+
+ <!-- Specialize a new element <fig1> from <fig>. -->
+ <elementdomain domain="fig1-d">
+  <specialize elements="fig1" from="fig"/>
+ </elementdomain>
+
+ <!-- Create a topicshell module that lets you use it. -->
+ <topicshell filename="myTopicShell.rng">
+  <root_element>topic</root_element>
+  <include_domains>fig1-d</include_domains>
+ </topicshell>
+</plugin>
+
+
+<!-- When you create this plugin, the <plugin>/templates directory contains an example DITA topic file for each topicshell:
+
+$ cat ./ex1/template/myTopicShell.dita
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-model href="com:test:ex1:myTopicShell.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<topic></topic>
+$
+
+-->
