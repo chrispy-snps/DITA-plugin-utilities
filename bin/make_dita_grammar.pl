@@ -43,7 +43,7 @@ print "Processing '$input_file'...\n";
 # make output plugin directory
 my $plugin_directory = $plugin->att('directory');
 my $rng_directory = File::Spec->catdir($plugin_directory, 'rng');
-my $template_directory = File::Spec->catdir($plugin_directory, 'template');
+my $template_directory = File::Spec->catdir($plugin_directory, 'templates');
 remove_tree($rng_directory, $template_directory);
 make_path($plugin_directory, $rng_directory, $template_directory);
 
@@ -644,10 +644,11 @@ foreach my $new_file ($plugin->children) {
 
  # for document-type shells, write an example .dita file that uses the shell
  if ($new_file->matches('topicshell|mapshell')) {
-  my $templatefilename = File::Spec->catdir($template_directory, $base_output_filename =~ s!\.rng$!.dita!r);
+  my $templatefilename = File::Spec->catdir($template_directory, $module_title.'.dita');
   print "  Creating '".basename($templatefilename)."'...\n";
-  my $templatetwig = XML::Twig->new(elt_class => 'my_elt')->parse('<?xml version="1.0" encoding="utf-8"?><?xml-model href="'.$urn.'" schematypens="http://relaxng.org/ns/structure/1.0"?><START></START>');
+  my $templatetwig = XML::Twig->new(elt_class => 'my_elt')->parse('<?xml version="1.0" encoding="utf-8"?><?xml-model href="'.$urn.'" schematypens="http://relaxng.org/ns/structure/1.0"?><START id="reference_${id}"></START>');
   $templatetwig->root->set_tag($new_file->first_child_text('root_element'));
+  $templatetwig->root->insert_new_elt('first_child', 'title', '${caret}') if $new_file->matches('topicshell');
   $templatetwig->print_to_file($templatefilename, pretty_print => 'indented');  
  }
 }
@@ -782,6 +783,7 @@ sub make_content_model {
  $top->strip_att('#connector');
  $_->erase for $top->descendants('div');
  while (my @nested_choice = $top->get_xpath('.//choice/choice')) { $_->erase for @nested_choice; }
+ $top->insert('list') if $attflag;
  return $top->cut_children;
 }
 
