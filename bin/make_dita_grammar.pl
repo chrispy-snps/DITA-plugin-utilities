@@ -234,9 +234,9 @@ my $grammar_template = <<'EOS';
 </grammar>
 EOS
 
-my $uri_prefix = $plugin->first_child_text('uri_prefix');
+my $uri_prefix = $plugin->att('uri_prefix');
 foreach my $new_file ($plugin->children) {
- next if $new_file->matches('existing_files|uri_prefix');
+ next if $new_file->matches('existing_files');
 
  # get filename information for this module
  my $new_domain = $new_file->att('domain') if $new_file->matches('elementdomain|attributedomain|topic|map|constraint');
@@ -400,6 +400,7 @@ foreach my $new_file ($plugin->children) {
     $content_tag{$new_tag} = insert_xml($div, "<define name='${new_tag}.content'/>", "<ref name='${from_tag}.content'/>")->parent;
     my $attlist = insert_xml($div, "<define name='${new_tag}.attlist' combine='interleave'/>");
     insert_xml($attlist, "<ref name='${new_tag}.attributes'/>");
+    insert_xml($attlist, "<ref name='arch-atts'/>") if $base_tag eq 'topic';  # TO-DO (low priority) there is some duplication here because ${new_tag}.attributes points to ${from_tag}.attributes, which also contains a ref to domains-att
     insert_xml($attlist, "<ref name='domains-att'/>") if $base_tag eq 'topic';  # TO-DO (low priority) there is some duplication here because ${new_tag}.attributes points to ${from_tag}.attributes, which also contains a ref to domains-att
     insert_xml($div, "<define name='${new_tag}.attributes'/>", "<ref name='${from_tag}.attributes'/>");
     # SPECIALIZATION ATTRIBUTE DECLARATIONS
@@ -746,14 +747,13 @@ sub included_pfile {
 }
 
 sub make_content_model {
- my $pattern = shift;
- my $attflag = shift;
+ my ($pattern, $attflag) = @_;
  return my_parse('<empty/>') if $pattern eq '';
  my %connectors = ('|' => 'choice', '&' => 'interleave', ',' => 'div');
  my %quantifiers = ('*' => 'zeroOrMore', '+' => 'oneOrMore', '?' => 'optional');
  my $top = XML::Twig::Elt->new('content_model');
  my $current_group = $top->insert_new_elt('last_child', 'div');
- foreach my $token ($pattern =~ m!(\(|\)|\*|\+|\?|\&|\||,|[\w\\\-\._]+)!g) {
+ foreach my $token ($pattern =~ m{((?<!\\)\(|(?<!\\)\)|\*|\+|\?|\&|\||,|(?:[\w\-\._]|\\.)+)}g) {
   if (defined($connectors{$token})) {
    if (!$current_group->att('#connector')) {
     $current_group->set_tag($connectors{$token});
@@ -768,6 +768,7 @@ sub make_content_model {
   } elsif ($token eq ')') {
    $current_group = $current_group->parent;
   } else {
+   $token =~ s!\\(.)!$1!g;  # remove escaping backslashes
    if ($attflag) {
     $current_group->insert_new_elt('last_child', 'value', $token);  # for attributes, build string value elements
    } else {
