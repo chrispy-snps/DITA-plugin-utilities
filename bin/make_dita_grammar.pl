@@ -363,6 +363,8 @@ foreach my $new_file ($plugin->children) {
    insert_xml($include_for_domain{$root_element_domain}, "<define name='${root_element}-info-types'/>")->set_content($existing_info_types->children_copy);
   }
  }
+# TO-DO -- automatically include absolutely necessary modules for bare topicshell/mapshell modules defined with no domains
+# (for example, a mapshell needs mapgroup-d)
 
  if ($new_file->matches('topicshell|mapshell')) {
   # ROOT ELEMENT DECLARATION
@@ -400,8 +402,8 @@ foreach my $new_file ($plugin->children) {
     $content_tag{$new_tag} = insert_xml($div, "<define name='${new_tag}.content'/>", "<ref name='${from_tag}.content'/>")->parent;
     my $attlist = insert_xml($div, "<define name='${new_tag}.attlist' combine='interleave'/>");
     insert_xml($attlist, "<ref name='${new_tag}.attributes'/>");
-    insert_xml($attlist, "<ref name='arch-atts'/>") if $base_tag eq 'topic';  # TO-DO (low priority) there is some duplication here because ${new_tag}.attributes points to ${from_tag}.attributes, which also contains a ref to domains-att
-    insert_xml($attlist, "<ref name='domains-att'/>") if $base_tag eq 'topic';  # TO-DO (low priority) there is some duplication here because ${new_tag}.attributes points to ${from_tag}.attributes, which also contains a ref to domains-att
+    insert_xml($attlist, "<ref name='arch-atts'/>") if $base_tag =~ m!^(topic|map)$!;  # TO-DO (low priority) there is some duplication here because ${new_tag}.attributes points to ${from_tag}.attributes, which also contains a ref to domains-att
+    insert_xml($attlist, "<ref name='domains-att'/>") if $base_tag =~ m!^(topic|map)$!;  # TO-DO (low priority) there is some duplication here because ${new_tag}.attributes points to ${from_tag}.attributes, which also contains a ref to domains-att
     insert_xml($div, "<define name='${new_tag}.attributes'/>", "<ref name='${from_tag}.attributes'/>");
     # SPECIALIZATION ATTRIBUTE DECLARATIONS
     my $define = insert_xml($specialization_attribute_declarations, "<define name='${new_tag}.attlist' combine='interleave'/>");
