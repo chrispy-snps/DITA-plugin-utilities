@@ -1,5 +1,4 @@
-<plugin directory="./ex2">
- <uri_prefix>com:test:ex2</uri_prefix>
+<plugin directory="./ex2" uri_prefix="com:test:ex2">
 
  <!-- Domain names must have the proper extension or the specification is rejected. -->
  <!-- Filenames are optional; the default is to create one automatically. -->

@@ -1,5 +1,5 @@
-<plugin directory="./ex1">
- <uri_prefix>com:test:ex1</uri_prefix>
+<?xml-model href="./schema.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<plugin directory="./ex1" uri_prefix="com:test:ex1">
 
  <!-- Specialize a new element <fig1> from <fig>. -->
  <elementdomain domain="fig1-d">

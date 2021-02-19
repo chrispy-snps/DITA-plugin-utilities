@@ -1,5 +1,5 @@
-<plugin directory="./ex3">
- <uri_prefix>com:test:ex3</uri_prefix>
+<?xml-model href="./schema.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<plugin directory="./ex3" uri_prefix="com:test:ex3">
 
  <!-- You can specify a content model for attributes. -->
  <attributedomain domain="style">
