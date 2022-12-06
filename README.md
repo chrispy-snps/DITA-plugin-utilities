@@ -112,10 +112,19 @@ You can repeat this for the other examples in the directory.
 ## Limitations and Caveats
 
 * I don't have a computer science degree. There are plenty of places where the code is messy and I don't have the time or expertise to improve it.
+
 * The syntax of the input XML file might change in the future (but hopefully always for the better!).
+
 * Content model modification is not robust yet. In particular, I need to improve the handling of applying successive modifications to the same content models.
-* Something in the RelaxNG SVG schema files causes `jing`/`trang` to crash.
-  * Thus, topics that include the DITA `svg-d` domain, like topic.rng or task.rng in technicalContent/rng, will also crash `content_model.pl`.
+
+* [A bug in `jing`](https://github.com/relaxng/jing-trang/issues/225) causes `content_model.pl` to crash when processing topics that include the DITA `svg-d` domain, such as topic.rng or task.rng in technicalContent/rng.
+
+  To work around this, run the following commands on your DITA-OT:
+
+    ```
+    sed -i 's/<!DOCTYPE .*>//' ${PATH_TO_DITAOT}/plugins/org.oasis-open.dita.v1_3/rng/technicalContent/rng/svg/svg11/*.rng
+    sed -i 's/<!DOCTYPE .*>//' ${PATH_TO_DITAOT}/plugins/org.oasis-open.dita.techcomm.v2_0/rng/technicalContent/svg/svg11/*.rng
+    ```
 
 ## Author
 
