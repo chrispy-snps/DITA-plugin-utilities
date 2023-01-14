@@ -37,7 +37,7 @@ GetOptions(
 my $input_file = shift or HelpMessage(1);
 
 # read in user's high-level grammar description file
-my $plugin = XML::Twig->new(elt_class => 'my_elt')->parsefile($input_file)->root;
+my $plugin = my_twig->new(elt_class => 'my_elt')->parsefile($input_file)->root;
 print "Processing '$input_file'...\n";
 
 # make output plugin directory
@@ -148,7 +148,7 @@ print " Reading existing grammar files...\n";
  foreach my $dir (uniq @rng_dirs) {
   print "  Reading files in '$dir'...\n";
   foreach my $file (get_rng_files($dir)) {
-   my $this_grammar = XML::Twig->new(elt_class => 'my_elt')->parsefile($file)->root->cut;
+   my $this_grammar = my_twig->new(elt_class => 'my_elt')->parsefile($file)->root->cut;
    $this_grammar->set_att('#pfile', adjust_local_path($file, '.'));  # @pfile contains the full unambiguous physical filesystem path to the module
    process_grammar($this_grammar);
   }
@@ -210,7 +210,7 @@ process_ordered_grammar($_) for @all_grammars_up;
 # WRITE NEW GRAMMARS
 
 # define the plugin catalog to accumulate
-my $catalogtwig = XML::Twig->new(elt_class => 'my_elt');
+my $catalogtwig = my_twig->new(elt_class => 'my_elt');
 my $catalog = $catalogtwig->parse('<?xml version="1.0" encoding="UTF-8"?><catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"/>')->root;
 
 # define the XML header for DITA vocabulary files
@@ -254,7 +254,7 @@ foreach my $new_file ($plugin->children) {
 
  # create a twig for our new grammar and fill in basic information
  # (common to all grammar types)
- my $newtwig = XML::Twig->new(elt_class => 'my_elt');
+ my $newtwig = my_twig->new(elt_class => 'my_elt');
  my $new_grammar = $newtwig->parse($grammar_template)->root;
  my $root_element = $new_file->first_child_text('root_element') if $new_file->matches('topicshell|mapshell');
  my $module_title = ($new_file->first_child_text('title') or $new_file->tag." Module for ".($new_domain ? "${new_domain} Domain" : "${root_element}"));
@@ -564,7 +564,7 @@ foreach my $new_file ($plugin->children) {
 #print $this_define->sprint."\n";
     }
     my @refs = $this_define->descendants('ref');
-    do {$_->replace_with(XML::Twig::Elt->new('#COMMENT', $_->sprint)) for grep {defined($refs_to_replace{$_->att('name')})} @refs} if $action->matches('disallow');
+    do {$_->replace_with(my_elt->new('#COMMENT', $_->sprint)) for grep {defined($refs_to_replace{$_->att('name')})} @refs} if $action->matches('disallow');
     do {$_->replace_with(make_content_model($action->att('with'))) for grep {defined($refs_to_replace{$_->att('name')})} @refs} if $action->matches('replace|replace-info-type');
     foreach my $ref (grep {defined($copied_define_names{$_->att('name')})} @refs) {
      if (defined($uncopied_define_names{$ref->att('name')})) {
@@ -574,7 +574,7 @@ foreach my $new_file ($plugin->children) {
      $ref->latt('name') .= $suffix if !defined($invariant_names{$ref->att('name')});
     }
    }
-#$new_grammar->print_to_file('ng0.rng', pretty_print => 'indented');
+#$new_grammar->my_print_to_file('ng0.rng', pretty_print => 'indented');
    $_->strip_att('#fwd') for @grammars_in_scope;
    $_->strip_att('#copy') for @grammars_in_scope;
   }
@@ -583,7 +583,7 @@ foreach my $new_file ($plugin->children) {
   #$_->strip_att('#donotcopy') for @grammars_in_scope;
 
   # simplify new content models
-#$new_grammar->print_to_file('ng1.rng', pretty_print => 'indented');
+#$new_grammar->my_print_to_file('ng1.rng', pretty_print => 'indented');
   while (1) {
    my $changes = 0;
 
@@ -623,7 +623,7 @@ foreach my $new_file ($plugin->children) {
 
    last if !$changes;
   }
-#$new_grammar->print_to_file('ng2.rng', pretty_print => 'indented');
+#$new_grammar->my_print_to_file('ng2.rng', pretty_print => 'indented');
  }
  $extra_content_models->delete if $extra_content_models && !$extra_content_models->has_children('define|div');
 
@@ -636,7 +636,7 @@ foreach my $new_file ($plugin->children) {
  $new_grammar->first_descendant('modulePublicIds')->set_content(my_parse("<${rngtype}>${urn}<var presep=':' name='ditaver'/></${rngtype}>"));
 
  # output our template
- $new_grammar->twig->print_to_file($full_output_filename, pretty_print => 'indented');
+ $new_grammar->twig->my_print_to_file($full_output_filename, pretty_print => 'indented');
  $new_grammar->set_att('base_output_filename', $base_output_filename);
  $new_grammar->set_att('#pfile', adjust_local_path($full_output_filename, '.'));
  process_grammar($new_grammar);
@@ -649,20 +649,20 @@ foreach my $new_file ($plugin->children) {
  if ($new_file->matches('topicshell|mapshell')) {
   my $templatefilename = File::Spec->catdir($template_directory, $module_title.'.dita');
   print "  Creating '".basename($templatefilename)."'...\n";
-  my $templatetwig = XML::Twig->new(elt_class => 'my_elt')->parse('<?xml version="1.0" encoding="utf-8"?><?xml-model href="'.$urn.'" schematypens="http://relaxng.org/ns/structure/1.0"?><START id="reference_${id}"></START>');
+  my $templatetwig = my_twig->new(elt_class => 'my_elt')->parse('<?xml version="1.0" encoding="utf-8"?><?xml-model href="'.$urn.'" schematypens="http://relaxng.org/ns/structure/1.0"?><START id="reference_${id}"></START>');
   $templatetwig->root->set_tag($new_file->first_child_text('root_element'));
   $templatetwig->root->insert_new_elt('first_child', 'title', '${caret}') if $new_file->matches('topicshell');
-  $templatetwig->print_to_file($templatefilename, pretty_print => 'indented');  
+  $templatetwig->my_print_to_file($templatefilename, pretty_print => 'indented');  
  }
 }
 
 print " Creating '".basename(my $catfilename = File::Spec->catdir($plugin_directory, 'catalog.xml'))."'...\n";
-$catalogtwig->print_to_file($catfilename, pretty_print => 'indented');
+$catalogtwig->my_print_to_file($catfilename, pretty_print => 'indented');
 
 print " Creating '".basename(my $pluginfilename = File::Spec->catdir($plugin_directory, 'plugin.xml'))."'...\n";
-my $plugintwig = XML::Twig->new(elt_class => 'my_elt')->parse('<?xml version="1.0" encoding="UTF-8"?><plugin id="REPLACEME"><feature extension="dita.specialization.catalog.relative" file="catalog.xml"/></plugin>');
+my $plugintwig = my_twig->new(elt_class => 'my_elt')->parse('<?xml version="1.0" encoding="UTF-8"?><plugin id="REPLACEME"><feature extension="dita.specialization.catalog.relative" file="catalog.xml"/></plugin>');
 $plugintwig->root->set_att('id', basename($plugin_directory));
-$plugintwig->print_to_file($pluginfilename, pretty_print => 'indented');
+$plugintwig->my_print_to_file($pluginfilename, pretty_print => 'indented');
 
 
 
@@ -739,7 +739,7 @@ sub add_domain {
 }
 
 sub my_parse {
- return XML::Twig->new(elt_class => 'my_elt')->parse(shift)->root->cut;
+ return my_twig->new(elt_class => 'my_elt')->parse(shift)->root->cut;
 }
 
 sub included_pfile {
@@ -753,7 +753,7 @@ sub make_content_model {
  return my_parse('<empty/>') if $pattern eq '';
  my %connectors = ('|' => 'choice', '&' => 'interleave', ',' => 'div');
  my %quantifiers = ('*' => 'zeroOrMore', '+' => 'oneOrMore', '?' => 'optional');
- my $top = XML::Twig::Elt->new('content_model');
+ my $top = my_elt->new('content_model');
  my $current_group = $top->insert_new_elt('last_child', 'div');
  foreach my $token ($pattern =~ m{((?<!\\)\(|(?<!\\)\)|\*|\+|\?|\&|\||,|(?:[\w\-\._]|\\.)+)}g) {
   if (defined($connectors{$token})) {
@@ -799,6 +799,25 @@ sub get_ditaot_dir {
  print "  Using DITA-OT installation at '$ditaotfull'.\n";
  return $ditaotfull;
 }
+
+
+########################################
+# CUSTOM TWIG HANDLERS
+
+package my_twig;
+use XML::Twig;
+use Carp qw(croak);
+use base 'XML::Twig';
+
+sub my_print_to_file {
+ my ($twig, $filename) = @_;
+ my $xml = $twig->sprint(pretty_print => 'indented');
+ $xml =~ s{^\s*(<\?[^>]+\?>)\s*(<\?[^>]+\?>)\s*}{$1\n$2\n};  # fix <?xml version?>, <?xml-model?>
+ open(my $fh, ">$filename") or die "can't open $filename for write: $!";
+ print $fh $xml;
+ close $fh;
+}
+
 
 ########################################
 # CUSTOM ELT HANDLERS
